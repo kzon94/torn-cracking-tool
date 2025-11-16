@@ -3,9 +3,7 @@ from collections import Counter
 
 import streamlit as st
 
-# -----------------------------------------------------------------------------
 # CONFIG
-# -----------------------------------------------------------------------------
 
 PASSWORD_FILE = "ignis-1M.txt"
 TOP_N = 10
@@ -17,9 +15,7 @@ st.set_page_config(
 )
 
 
-# -----------------------------------------------------------------------------
 # CORE LOGIC
-# -----------------------------------------------------------------------------
 
 @st.cache_data(show_spinner=False)
 def load_passwords(path: str) -> list[str]:
@@ -111,9 +107,7 @@ def format_forbid_map(forbid_positions):
     return "".join(parts)
 
 
-# -----------------------------------------------------------------------------
 # LOAD DICTIONARY
-# -----------------------------------------------------------------------------
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 pw_path = os.path.join(base_path, PASSWORD_FILE)
@@ -125,9 +119,7 @@ if not os.path.exists(pw_path):
 all_passwords = load_passwords(pw_path)
 
 
-# -----------------------------------------------------------------------------
 # UI
-# -----------------------------------------------------------------------------
 
 st.title("Kzon's Torn Cracking Tool")
 
@@ -163,9 +155,7 @@ length = st.number_input(
 start_search = st.button("Start / reset search", type="primary")
 
 
-# -----------------------------------------------------------------------------
 # SESSION STATE
-# -----------------------------------------------------------------------------
 
 if "current_length" not in st.session_state:
     st.session_state.current_length = None
@@ -196,9 +186,7 @@ forbid_positions = st.session_state.forbid_positions
 current_candidates = st.session_state.current_candidates
 
 
-# -----------------------------------------------------------------------------
 # CONSTRAINTS UI
-# -----------------------------------------------------------------------------
 
 st.markdown("### Constraints")
 
@@ -268,9 +256,7 @@ if apply_d:
         current_candidates = st.session_state.current_candidates
 
 
-# -----------------------------------------------------------------------------
 # CANDIDATES DISPLAY
-# -----------------------------------------------------------------------------
 
 st.markdown("---")
 st.markdown("### Candidates & probabilities")
@@ -292,9 +278,7 @@ rows = [
 st.table(rows)
 
 
-# -----------------------------------------------------------------------------
 # POSITION FREQUENCIES
-# -----------------------------------------------------------------------------
 
 st.markdown("### Letter frequencies by position")
 
@@ -326,3 +310,4 @@ if not any_printed:
     st.info("All positions are already fixed.")
 else:
     st.markdown("\n".join(lines))
+
