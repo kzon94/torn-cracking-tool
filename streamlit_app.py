@@ -129,8 +129,8 @@ with st.expander("How this app works", expanded=False):
     st.markdown(
         """
         1. Choose the **password length** and start a search.  
-        2. Use **Known positions** (`-a` style pattern) to set letters you are sure about.  
-        3. Use **Forbidden positions** (`-d` style pattern) to block letters in specific slots.  
+        2. Use **Known positions** to set letters you are sure about.  
+        3. Use **Forbidden positions** to block letters in specific slots.  
         4. The app will show the **best candidate passwords** and **letter frequencies** for the remaining positions.
         
         Pattern rules:
@@ -194,26 +194,26 @@ st.markdown("### Constraints")
 must_str = "".join(c if c is not None else "." for c in must_positions)
 forbid_str = format_forbid_map(forbid_positions)
 
-st.markdown(f"**Current known pattern (-a):** `{must_str}`")
-st.markdown(f"**Current forbidden map (-d):** `{forbid_str}`")
+st.markdown(f"**Current known pattern:** `{must_str}`")
+st.markdown(f"**Current forbidden map:** `{forbid_str}`")
 
 col_a, col_d = st.columns(2)
 
 with col_a:
     pattern_a = st.text_input(
-        "Known positions pattern (-a)",
+        "Known positions pattern",
         placeholder="Example: ..u..",
         max_chars=current_length,
     )
-    apply_a = st.button("Apply known pattern (-a)")
+    apply_a = st.button("Apply known pattern")
 
 with col_d:
     pattern_d = st.text_input(
-        "Forbidden positions pattern (-d)",
+        "Forbidden positions pattern",
         placeholder="Example: ....o",
         max_chars=current_length,
     )
-    apply_d = st.button("Apply forbidden pattern (-d)")
+    apply_d = st.button("Apply forbidden pattern")
 
 
 # Apply -a pattern
@@ -302,4 +302,5 @@ if not any_printed:
     st.info("All positions are already fixed.")
 else:
     st.markdown("\n".join(lines))
+
 
