@@ -8,7 +8,7 @@ import streamlit as st
 # -----------------------------------------------------------------------------
 
 PASSWORD_FILE = "ignis-1M.txt"
-TOP_N = 20
+TOP_N = 10
 TOP_LETTERS_PER_POSITION = 3
 
 st.set_page_config(
@@ -302,5 +302,6 @@ if not any_printed:
     st.info("All positions are already fixed.")
 else:
     st.markdown("\n".join(lines))
+
 
 
